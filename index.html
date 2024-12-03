@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บอกรักเธอ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffe4e1, #ffc1e3);
+            color: #444;
+            text-align: center;
+        }
+
+        .container {
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff6f91;
+            margin-bottom: 20px;
+        }
+
+        /* ซองจดหมายใหญ่ */
+        .envelope {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background-color: #ffcccb;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 20px;
+            background-color: #ff6f91;
+            border-radius: 10px;
+        }
+
+        .envelope.open {
+            transform: rotateX(180deg);
+        }
+
+        .envelope .flap {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            background-color: #ff6f91;
+            border-radius: 20px 20px 0 0;
+            top: 0;
+            left: 0;
+            transform-origin: top;
+            transform: rotateX(-180deg);
+            transition: all 0.7s ease;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(0deg);
+        }
+
+        /* โบว์ที่ซองจดหมาย */
+        .bow {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 40px;
+            background-color: #ff1744;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .bow:before, .bow:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff1744;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bow:before {
+            left: -40px;
+        }
+
+        .bow:after {
+            right: -40px;
+        }
+
+        /* เนื้อหาภายในซอง */
+        .letter {
+            padding: 20px;
+            display: none;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: #6a1b9a;
+            font-size: 1.5rem;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .heart {
+            font-size: 6rem;
+            color: #ff1744;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: #ff8fa3;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+
+        .button:hover {
+            background: #ff6f91;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        audio {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>เกมส์มีอะไรจะบอก...</h1>
+
+        <!-- ซองจดหมายใหญ่พร้อมโบว์ -->
+        <div class="envelope" onclick="openEnvelope()">
+            <div class="bow"></div> <!-- โบว์ที่ซองจดหมาย -->
+            <div class="flap"></div>
+        </div>
+
+        <!-- เพลงซ่อนอยู่ในแท็ก audio -->
+        <audio id="audio" autoplay loop>
+            <source src="Au.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- เนื้อหาภายในซองจดหมาย -->
+        <div id="letter" class="letter">
+            <div class="heart">❤️</div>
+            <h2>สวัสดีครับคุณยิ้มที่น่ารัก🤍</h2>
+            <p>รู้ตัวไหมว่าโครตนะระเลย❤️</p>
+            <button class="button" onclick="alert('ตอนไหนจะเลิกเจ้าชู้เสียที55555🥰')">กดสิคุณยิ้ม</button>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            // เปิดซองจดหมาย
+            document.querySelector('.envelope').classList.add('open');
+            // แสดงเนื้อหาภายใน
+            document.getElementById('letter').style.display = 'block';
+            // เริ่มเพลง
+            document.getElementById('audio').play();
+        }
+    </script>
+</body>
+</html>
